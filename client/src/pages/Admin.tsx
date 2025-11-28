@@ -14,18 +14,27 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 
 export default function Admin() {
-  const { items, deleteItem, addItem, updateItem } = useContent();
+  const { items, settings, deleteItem, addItem, updateItem, updateSettings } = useContent();
   const { isAuthenticated, logout } = useAuth();
   const [, setLocation] = useLocation();
   const { toast } = useToast();
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<Partial<Item> | null>(null);
+  
+  // Settings state
+  const [localSettings, setLocalSettings] = useState(settings);
 
   useEffect(() => {
     if (!isAuthenticated) {
       setLocation("/login");
     }
   }, [isAuthenticated, setLocation]);
+
+  const handleSaveSettings = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateSettings(localSettings);
+    toast({ title: "Configurações salvas", description: "As alterações foram aplicadas com sucesso." });
+  };
 
   if (!isAuthenticated) return null;
 
@@ -101,14 +110,56 @@ export default function Admin() {
       </div>
 
       <Tabs defaultValue="news" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 bg-muted/20">
+        <TabsList className="grid w-full grid-cols-4 bg-muted/20">
           <TabsTrigger value="news">Novidades (Carousel)</TabsTrigger>
           <TabsTrigger value="download">Downloads</TabsTrigger>
           <TabsTrigger value="tutorial">Tutoriais</TabsTrigger>
+          <TabsTrigger value="settings">Configurações</TabsTrigger>
         </TabsList>
         <TabsContent value="news"><ItemList type="news" /></TabsContent>
         <TabsContent value="download"><ItemList type="download" /></TabsContent>
         <TabsContent value="tutorial"><ItemList type="tutorial" /></TabsContent>
+        <TabsContent value="settings">
+          <div className="max-w-2xl mt-6">
+             <Card className="bg-card/40 border-border/50">
+               <CardHeader>
+                 <CardTitle>Configurações Gerais</CardTitle>
+                 <CardDescription>Gerencie links e textos globais do site.</CardDescription>
+               </CardHeader>
+               <form onSubmit={handleSaveSettings}>
+                 <CardContent className="space-y-4">
+                   <div className="space-y-2">
+                     <Label>URL da Loja</Label>
+                     <Input 
+                       value={localSettings.shopUrl} 
+                       onChange={(e) => setLocalSettings(prev => ({ ...prev, shopUrl: e.target.value }))} 
+                     />
+                   </div>
+                   <div className="space-y-2">
+                     <Label>URL do Discord</Label>
+                     <Input 
+                       value={localSettings.discordUrl} 
+                       onChange={(e) => setLocalSettings(prev => ({ ...prev, discordUrl: e.target.value }))} 
+                     />
+                   </div>
+                   <div className="space-y-2">
+                     <Label>Texto do Rodapé (Sobre)</Label>
+                     <Textarea 
+                       value={localSettings.footerText} 
+                       onChange={(e) => setLocalSettings(prev => ({ ...prev, footerText: e.target.value }))} 
+                       className="h-24"
+                     />
+                   </div>
+                 </CardContent>
+                 <div className="p-6 pt-0 flex justify-end">
+                   <Button type="submit" className="bg-primary text-black hover:bg-primary/90">
+                     <Save className="mr-2 h-4 w-4" /> Salvar Configurações
+                   </Button>
+                 </div>
+               </form>
+             </Card>
+          </div>
+        </TabsContent>
       </Tabs>
 
       <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>

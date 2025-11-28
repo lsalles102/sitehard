@@ -20,15 +20,30 @@ export interface Item {
   date: string;
 }
 
+
+export interface Settings {
+  shopUrl: string;
+  discordUrl: string;
+  footerText: string;
+}
+
 interface ContentContextType {
   items: Item[];
+  settings: Settings;
   addItem: (item: Omit<Item, "id" | "date">) => void;
   updateItem: (id: string, item: Partial<Item>) => void;
   deleteItem: (id: string) => void;
   getItemsByType: (type: ItemType) => Item[];
+  updateSettings: (settings: Partial<Settings>) => void;
 }
 
 const ContentContext = createContext<ContentContextType | undefined>(undefined);
+
+const initialSettings: Settings = {
+  shopUrl: "#",
+  discordUrl: "#",
+  footerText: "O maior portal de cheats e hacks da América Latina. Domine o jogo com nossas ferramentas exclusivas."
+};
 
 const initialItems: Item[] = [
   {
@@ -90,6 +105,7 @@ const initialItems: Item[] = [
 
 export function ContentProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<Item[]>(initialItems);
+  const [settings, setSettings] = useState<Settings>(initialSettings);
 
   const addItem = (newItem: Omit<Item, "id" | "date">) => {
     const item: Item = {
@@ -110,13 +126,17 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
     setItems((prev) => prev.filter((item) => item.id !== id));
   };
 
+  const updateSettings = (newSettings: Partial<Settings>) => {
+    setSettings((prev) => ({ ...prev, ...newSettings }));
+  };
+
   const getItemsByType = (type: ItemType) => {
     return items.filter((item) => item.type === type);
   };
 
   return (
     <ContentContext.Provider
-      value={{ items, addItem, updateItem, deleteItem, getItemsByType }}
+      value={{ items, settings, addItem, updateItem, deleteItem, getItemsByType, updateSettings }}
     >
       {children}
     </ContentContext.Provider>

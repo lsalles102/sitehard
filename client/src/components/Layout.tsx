@@ -5,7 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import footerBg from "@assets/generated_images/background_for_footer_section.png";
 
+import { useContent } from "@/lib/store";
+
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const { settings } = useContent();
   const [location] = useLocation();
   const [isMobileOpen, setIsMobileOpen] = React.useState(false);
 
@@ -99,7 +102,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 HARDZERA
               </div>
               <p className="text-sm text-muted-foreground">
-                O maior portal de cheats e hacks da América Latina. Domine o jogo com nossas ferramentas exclusivas.
+                {settings.footerText}
               </p>
             </div>
             
@@ -124,10 +127,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h3 className="font-bold mb-4 text-foreground">Social</h3>
               <div className="flex flex-col gap-2">
-                <a href="#" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                <a href={settings.shopUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
                   <ShoppingCart className="h-4 w-4" /> Loja
                 </a>
-                <a href="#" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                <a href={settings.discordUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
                   <Disc className="h-4 w-4" /> Discord
                 </a>
               </div>
