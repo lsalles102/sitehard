@@ -78,14 +78,14 @@ export default function Home() {
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="space-y-4 max-w-2xl">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-white">
-              Junte-se à Elite
+              Participe da Comunidade
             </h2>
             <p className="text-muted-foreground text-lg">
-              Tenha acesso aos melhores cheats privados, suporte 24/7 e uma comunidade ativa.
+              Entre no nosso Discord e fique por dentro das últimas novidades, sorteios e suporte em tempo real.
             </p>
           </div>
-          <Button size="lg" className="bg-secondary hover:bg-secondary/80 text-white font-bold px-8 py-6 text-lg shadow-[0_0_20px_rgba(176,38,255,0.4)]">
-            Torne-se VIP
+          <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-6 text-lg shadow-[0_0_20px_rgba(79,70,229,0.4)] transition-all hover:scale-105">
+            Entrar no Discord
           </Button>
         </div>
       </section>

@@ -22,7 +22,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = (password: string) => {
     // Mock credential check
-    if (password === "admin123") {
+    if (password === "C@pitulo4v3") {
       localStorage.setItem("hardzera_auth", "true");
       setIsAuthenticated(true);
       return true;

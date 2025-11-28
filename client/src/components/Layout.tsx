@@ -1,8 +1,9 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
-import { Terminal, Download, BookOpen, Settings, Menu, X } from "lucide-react";
+import { Terminal, Download, BookOpen, Settings, Menu, X, Github, Twitter, Disc } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import footerBg from "@assets/generated_images/background_for_footer_section.png";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -84,20 +85,66 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border/40 bg-card py-6 md:py-0">
-        <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row px-4 md:px-8">
-          <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            Built by{" "}
-            <a
-              href="#"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4 hover:text-primary"
-            >
-              Replit Agent
-            </a>
-            . &copy; 2025 Hardzera.
-          </p>
+      <footer className="border-t border-border/40 bg-card py-12 relative overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-20">
+             <img src={footerBg} alt="" className="w-full h-full object-cover" />
+             <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
+        </div>
+        
+        <div className="container relative z-10 px-4 md:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 font-display text-2xl font-bold text-primary">
+                <Terminal className="h-6 w-6" />
+                HARDZERA
+              </div>
+              <p className="text-sm text-muted-foreground">
+                O maior portal de cheats e hacks da América Latina. Domine o jogo com nossas ferramentas exclusivas.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="font-bold mb-4 text-foreground">Navegação</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link href="/"><a className="hover:text-primary transition-colors">Home</a></Link></li>
+                <li><Link href="/downloads"><a className="hover:text-primary transition-colors">Downloads</a></Link></li>
+                <li><Link href="/tutorials"><a className="hover:text-primary transition-colors">Tutoriais</a></Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold mb-4 text-foreground">Legal</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-primary transition-colors">Termos de Uso</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Privacidade</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">DMCA</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold mb-4 text-foreground">Social</h3>
+              <div className="flex gap-4">
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Twitter className="h-5 w-5" />
+                </a>
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Disc className="h-5 w-5" />
+                </a>
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Github className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-border/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-center text-xs text-muted-foreground md:text-left">
+              &copy; 2025 Hardzera. Todos os direitos reservados.
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Designed by Replit Agent
+            </p>
+          </div>
         </div>
       </footer>
     </div>
