@@ -1,21 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useContent, Item, ItemType } from "@/lib/store";
+import { useAuth } from "@/lib/auth";
+import { useLocation } from "wouter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Plus, Trash2, Edit2, Save, X } from "lucide-react";
+import { Plus, Trash2, Edit2, Save, X, LogOut } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Admin() {
   const { items, deleteItem, addItem, updateItem } = useContent();
+  const { isAuthenticated, logout } = useAuth();
+  const [, setLocation] = useLocation();
   const { toast } = useToast();
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<Partial<Item> | null>(null);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setLocation("/login");
+    }
+  }, [isAuthenticated, setLocation]);
+
+  if (!isAuthenticated) return null;
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
@@ -83,6 +95,9 @@ export default function Admin() {
           <h1 className="text-3xl font-display font-bold">Painel Admin</h1>
           <p className="text-muted-foreground">Gerencie o conteúdo do site.</p>
         </div>
+        <Button variant="outline" onClick={logout} className="border-destructive text-destructive hover:bg-destructive hover:text-white">
+          <LogOut className="mr-2 h-4 w-4" /> Sair
+        </Button>
       </div>
 
       <Tabs defaultValue="news" className="w-full">

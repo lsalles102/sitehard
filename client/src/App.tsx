@@ -6,10 +6,12 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Layout from "@/components/Layout";
 import { ContentProvider } from "@/lib/store";
+import { AuthProvider } from "@/lib/auth";
 import Home from "@/pages/Home";
 import Downloads from "@/pages/Downloads";
 import Tutorials from "@/pages/Tutorials";
 import Admin from "@/pages/Admin";
+import Login from "@/pages/Login";
 
 function Router() {
   return (
@@ -19,6 +21,7 @@ function Router() {
         <Route path="/downloads" component={Downloads} />
         <Route path="/tutorials" component={Tutorials} />
         <Route path="/admin" component={Admin} />
+        <Route path="/login" component={Login} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
@@ -28,12 +31,14 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ContentProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </ContentProvider>
+      <AuthProvider>
+        <ContentProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </ContentProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
