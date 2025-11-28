@@ -12,6 +12,8 @@ import Downloads from "@/pages/Downloads";
 import Tutorials from "@/pages/Tutorials";
 import Admin from "@/pages/Admin";
 import Login from "@/pages/Login";
+import Terms from "@/pages/Terms";
+import Privacy from "@/pages/Privacy";
 
 function Router() {
   return (
@@ -22,6 +24,8 @@ function Router() {
         <Route path="/tutorials" component={Tutorials} />
         <Route path="/admin" component={Admin} />
         <Route path="/login" component={Login} />
+        <Route path="/terms" component={Terms} />
+        <Route path="/privacy" component={Privacy} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
-import { Terminal, Download, BookOpen, Settings, Menu, X, Github, Twitter, Disc } from "lucide-react";
+import { Terminal, Download, BookOpen, Settings, Menu, X, Github, Twitter, Disc, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import footerBg from "@assets/generated_images/background_for_footer_section.png";
@@ -115,23 +115,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h3 className="font-bold mb-4 text-foreground">Legal</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">Termos de Uso</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Privacidade</a></li>
+                <li><Link href="/terms"><a className="hover:text-primary transition-colors">Termos de Uso</a></Link></li>
+                <li><Link href="/privacy"><a className="hover:text-primary transition-colors">Privacidade</a></Link></li>
                 <li><a href="#" className="hover:text-primary transition-colors">DMCA</a></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-bold mb-4 text-foreground">Social</h3>
-              <div className="flex gap-4">
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Twitter className="h-5 w-5" />
+              <div className="flex flex-col gap-2">
+                <a href="#" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                  <ShoppingCart className="h-4 w-4" /> Loja
                 </a>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Disc className="h-5 w-5" />
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Github className="h-5 w-5" />
+                <a href="#" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                  <Disc className="h-4 w-4" /> Discord
                 </a>
               </div>
             </div>
