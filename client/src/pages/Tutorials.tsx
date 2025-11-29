@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { PlayCircle, FileText } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { VideoPlayer } from "@/components/VideoPlayer";
 
 export default function Tutorials() {
   const { getItemsByType } = useContent();
@@ -62,12 +63,7 @@ export default function Tutorials() {
               <ScrollArea className="h-[60vh] mt-4 pr-4">
                 <div className="space-y-6">
                   {item.videoUrl && (
-                    <div className="aspect-video w-full bg-black rounded-lg overflow-hidden border border-border/50">
-                      {/* Placeholder for video - in a real app this would be an iframe or video tag */}
-                      <div className="w-full h-full flex items-center justify-center bg-accent/20 text-muted-foreground">
-                         <p>Vídeo Player Placeholder ({item.videoUrl})</p>
-                      </div>
-                    </div>
+                    <VideoPlayer url={item.videoUrl} />
                   )}
                   
                   <div className="prose prose-invert max-w-none">
