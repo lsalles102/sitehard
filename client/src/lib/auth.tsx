@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useLocation } from "wouter";
+import * as api from "./api";
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: (password: string) => boolean;
+  login: (password: string) => Promise<boolean>;
   logout: () => void;
 }
 
@@ -20,9 +21,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const login = (password: string) => {
-    // Mock credential check
-    if (password === "C@pitulo4v3") {
+  const login = async (password: string): Promise<boolean> => {
+    const success = await api.login(password);
+    if (success) {
       localStorage.setItem("hardzera_auth", "true");
       setIsAuthenticated(true);
       return true;

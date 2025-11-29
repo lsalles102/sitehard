@@ -132,21 +132,21 @@ export default function Admin() {
                      <Label>URL da Loja</Label>
                      <Input 
                        value={localSettings.shopUrl} 
-                       onChange={(e) => setLocalSettings(prev => ({ ...prev, shopUrl: e.target.value }))} 
+                       onChange={(e) => setLocalSettings((prev) => ({ ...prev, shopUrl: e.target.value }))} 
                      />
                    </div>
                    <div className="space-y-2">
                      <Label>URL do Discord</Label>
                      <Input 
                        value={localSettings.discordUrl} 
-                       onChange={(e) => setLocalSettings(prev => ({ ...prev, discordUrl: e.target.value }))} 
+                       onChange={(e) => setLocalSettings((prev) => ({ ...prev, discordUrl: e.target.value }))} 
                      />
                    </div>
                    <div className="space-y-2">
                      <Label>Texto do Rodapé (Sobre)</Label>
                      <Textarea 
                        value={localSettings.footerText} 
-                       onChange={(e) => setLocalSettings(prev => ({ ...prev, footerText: e.target.value }))} 
+                       onChange={(e) => setLocalSettings((prev) => ({ ...prev, footerText: e.target.value }))} 
                        className="h-24"
                      />
                    </div>
