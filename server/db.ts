@@ -3,14 +3,17 @@ import postgres from "postgres";
 import * as schema from "@shared/schema";
 
 if (!process.env.DATABASE_URL) {
-  throw new Error(
-    "DATABASE_URL must be set. Did you forget to provision a database?",
-  );
+  throw new Error("DATABASE_URL must be set. Did you forget to provision a database?");
 }
 
 const connectionString = process.env.DATABASE_URL;
-const sql = postgres(connectionString, { 
+
+// Correção de SSL para Supabase + Render
+const sql = postgres(connectionString, {
   prepare: false,
-  ssl: process.env.NODE_ENV === 'production' ? 'require' : false,
+  ssl: process.env.NODE_ENV === "production"
+    ? { rejectUnauthorized: false }   // Supabase exige isso
+    : false                            // Ambiente local sem SSL
 });
+
 export const db = drizzle(sql, { schema });
