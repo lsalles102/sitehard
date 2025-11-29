@@ -140,7 +140,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               &copy; 2025 Hardzera. Todos os direitos reservados.
             </p>
             <p className="text-xs text-muted-foreground">
-              Designed by Replit Agent
+              Designed by HardZera
             </p>
           </div>
         </div>
