@@ -24,28 +24,26 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between px-4 md:px-8">
           <div className="flex items-center gap-2">
-            <Link href="/">
-              <a className="flex items-center gap-2 font-display text-2xl font-bold tracking-tighter text-primary transition-colors hover:text-primary/80">
-                <Terminal className="h-6 w-6" />
-                HARDZERA
-              </a>
+            <Link href="/" className="flex items-center gap-2 font-display text-2xl font-bold tracking-tighter text-primary transition-colors hover:text-primary/80">
+              <Terminal className="h-6 w-6" />
+              HARDZERA
             </Link>
           </div>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                <a
-                  className={`flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary ${
-                    location === item.href
-                      ? "text-primary"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  <item.icon className="h-4 w-4" />
-                  {item.label}
-                </a>
+              <Link 
+                key={item.href} 
+                href={item.href}
+                className={`flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary ${
+                  location === item.href
+                    ? "text-primary"
+                    : "text-muted-foreground"
+                }`}
+              >
+                <item.icon className="h-4 w-4" />
+                {item.label}
               </Link>
             ))}
           </nav>
@@ -61,18 +59,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <SheetContent side="right" className="border-l-primary/20 bg-card/95 backdrop-blur-xl">
                  <div className="flex flex-col gap-8 mt-8">
                   {navItems.map((item) => (
-                    <Link key={item.href} href={item.href}>
-                      <a
-                        onClick={() => setIsMobileOpen(false)}
-                        className={`flex items-center gap-4 text-lg font-medium transition-colors hover:text-primary ${
-                          location === item.href
-                            ? "text-primary"
-                            : "text-muted-foreground"
-                        }`}
-                      >
-                        <item.icon className="h-6 w-6" />
-                        {item.label}
-                      </a>
+                    <Link 
+                      key={item.href} 
+                      href={item.href}
+                      onClick={() => setIsMobileOpen(false)}
+                      className={`flex items-center gap-4 text-lg font-medium transition-colors hover:text-primary ${
+                        location === item.href
+                          ? "text-primary"
+                          : "text-muted-foreground"
+                      }`}
+                    >
+                      <item.icon className="h-6 w-6" />
+                      {item.label}
                     </Link>
                   ))}
                 </div>
@@ -109,17 +107,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h3 className="font-bold mb-4 text-foreground">Navegação</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/"><a className="hover:text-primary transition-colors">Home</a></Link></li>
-                <li><Link href="/downloads"><a className="hover:text-primary transition-colors">Downloads</a></Link></li>
-                <li><Link href="/tutorials"><a className="hover:text-primary transition-colors">Tutoriais</a></Link></li>
+                <li><Link href="/" className="hover:text-primary transition-colors">Home</Link></li>
+                <li><Link href="/downloads" className="hover:text-primary transition-colors">Downloads</Link></li>
+                <li><Link href="/tutorials" className="hover:text-primary transition-colors">Tutoriais</Link></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-bold mb-4 text-foreground">Legal</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/terms"><a className="hover:text-primary transition-colors">Termos de Uso</a></Link></li>
-                <li><Link href="/privacy"><a className="hover:text-primary transition-colors">Privacidade</a></Link></li>
+                <li><Link href="/terms" className="hover:text-primary transition-colors">Termos de Uso</Link></li>
+                <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacidade</Link></li>
                 <li><a href="#" className="hover:text-primary transition-colors">DMCA</a></li>
               </ul>
             </div>
