@@ -66,6 +66,14 @@ export class DatabaseStorage implements IStorage {
   }
 
   async updateItem(id: string, itemData: Partial<InsertItem>): Promise<Item | undefined> {
+    // ----------------------------------------
+    // FIX DO ERRO: e.toISOString não é função
+    // ----------------------------------------
+    // createdAt nunca deve ser enviado no update
+    if ("createdAt" in itemData) {
+      delete (itemData as any).createdAt;
+    }
+
     const [updatedItem] = await db
       .update(items)
       .set(itemData)
