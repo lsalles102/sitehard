@@ -33,45 +33,47 @@ export default function Downloads() {
         </div>
       </div>
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-6">
         {filteredDownloads.map((item) => (
-          <Card key={item.id} className="bg-card/50 border-primary/20 hover:border-primary/60 transition-all group overflow-hidden flex flex-col">
-            <div className="relative w-full aspect-[1.9/1] overflow-hidden rounded-md bg-black/30">
+          <Card key={item.id} className="bg-card/50 border-primary/20 hover:border-primary/60 transition-all group overflow-hidden flex flex-col h-[260px]">
+
+            {/* IMAGEM FIXA ESTILO HAZE STORE */}
+            <div className="relative w-full h-[120px] overflow-hidden">
               <img 
                 src={item.imageUrl} 
                 alt={item.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <span className="absolute bottom-2 left-2 text-[10px] font-mono text-primary bg-black/60 px-2 py-0.5 rounded border border-primary/20 backdrop-blur">
+              <span className="absolute bottom-2 left-2 text-[10px] px-2 py-0.5 bg-black/60 border border-primary/30 text-primary rounded font-mono">
                 V 1.0
               </span>
             </div>
-            </div>
-            <CardHeader className="pb-2 pt-3 px-4 flex-grow">
-              <CardTitle className="font-display text-lg leading-tight">{item.title}</CardTitle>
-              <CardDescription className="line-clamp-2 text-xs mt-1">{item.description}</CardDescription>
+
+            {/* TITULO E DESCRIÇÃO */}
+            <CardHeader className="px-3 pt-2 pb-0 flex-grow">
+              <CardTitle className="text-sm font-bold truncate">{item.title}</CardTitle>
+              <CardDescription className="text-[11px] line-clamp-2">{item.description}</CardDescription>
             </CardHeader>
-            <CardFooter className="mt-auto pt-2 px-4 pb-3">
+
+            {/* BOTÃO FIXO NO RODAPÉ */}
+            <CardFooter className="mt-auto pb-3 px-3">
               {item.downloadUrl ? (
                 <Button 
                   asChild
                   size="sm"
-                  className="w-full bg-primary/10 hover:bg-primary hover:text-black text-primary border border-primary/50 transition-all shadow-[0_0_15px_rgba(0,255,157,0.1)] hover:shadow-[0_0_25px_rgba(0,255,157,0.4)] text-xs"
+                  className="w-full text-xs bg-primary/10 hover:bg-primary hover:text-black border border-primary/50 transition-all"
                 >
                   <a href={item.downloadUrl} target="_blank" rel="noopener noreferrer" download>
-                    <Download className="mr-2 h-3 w-3" /> Download Seguro
+                    <Download className="mr-2 h-3 w-3" /> Download
                   </a>
                 </Button>
               ) : (
-                <Button 
-                  disabled
-                  size="sm"
-                  className="w-full bg-primary/10 text-primary border border-primary/50 opacity-50 cursor-not-allowed text-xs"
-                >
-                  <Download className="mr-2 h-3 w-3" /> Download Indisponível
+                <Button disabled size="sm" className="w-full opacity-50 text-xs">
+                  Indisponível
                 </Button>
               )}
             </CardFooter>
+
           </Card>
         ))}
       </div>
