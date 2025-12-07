@@ -36,12 +36,12 @@ export default function Downloads() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredDownloads.map((item) => (
           <Card key={item.id} className="bg-card/50 border-primary/20 hover:border-primary/60 transition-all group overflow-hidden flex flex-col">
-            <div className="relative h-40 overflow-hidden">
+            <div className="relative h-28 overflow-hidden bg-black/20">
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
               <img 
                 src={item.imageUrl} 
                 alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute bottom-4 left-4 z-20">
                 <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded border border-primary/20 backdrop-blur">
