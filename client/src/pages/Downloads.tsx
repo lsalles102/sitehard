@@ -33,7 +33,7 @@ export default function Downloads() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredDownloads.map((item) => (
           <Card key={item.id} className="bg-card/50 border-primary/20 hover:border-primary/60 transition-all group overflow-hidden flex flex-col">
             <div className="relative h-20 overflow-hidden bg-black/30 flex items-center justify-center">
@@ -49,15 +49,16 @@ export default function Downloads() {
                 </span>
               </div>
             </div>
-            <CardHeader className="pb-3">
-              <CardTitle className="font-display text-xl">{item.title}</CardTitle>
-              <CardDescription className="line-clamp-2 text-sm">{item.description}</CardDescription>
+            <CardHeader className="pb-2 pt-3 px-4">
+              <CardTitle className="font-display text-lg leading-tight">{item.title}</CardTitle>
+              <CardDescription className="line-clamp-2 text-xs mt-1">{item.description}</CardDescription>
             </CardHeader>
-            <CardFooter className="mt-auto pt-4">
+            <CardFooter className="mt-auto pt-2 px-4 pb-3">
               {item.downloadUrl ? (
                 <Button 
                   asChild
-                  className="w-full bg-primary/10 hover:bg-primary hover:text-black text-primary border border-primary/50 transition-all shadow-[0_0_15px_rgba(0,255,157,0.1)] hover:shadow-[0_0_25px_rgba(0,255,157,0.4)]"
+                  size="sm"
+                  className="w-full bg-primary/10 hover:bg-primary hover:text-black text-primary border border-primary/50 transition-all shadow-[0_0_15px_rgba(0,255,157,0.1)] hover:shadow-[0_0_25px_rgba(0,255,157,0.4)] text-xs"
                 >
                   <a 
                     href={item.downloadUrl} 
@@ -65,15 +66,16 @@ export default function Downloads() {
                     rel="noopener noreferrer"
                     download
                   >
-                    <Download className="mr-2 h-4 w-4" /> Download Seguro
+                    <Download className="mr-2 h-3 w-3" /> Download Seguro
                   </a>
                 </Button>
               ) : (
                 <Button 
                   disabled
-                  className="w-full bg-primary/10 hover:bg-primary hover:text-black text-primary border border-primary/50 transition-all shadow-[0_0_15px_rgba(0,255,157,0.1)] hover:shadow-[0_0_25px_rgba(0,255,157,0.4)] opacity-50 cursor-not-allowed"
+                  size="sm"
+                  className="w-full bg-primary/10 hover:bg-primary hover:text-black text-primary border border-primary/50 transition-all shadow-[0_0_15px_rgba(0,255,157,0.1)] hover:shadow-[0_0_25px_rgba(0,255,157,0.4)] opacity-50 cursor-not-allowed text-xs"
                 >
-                  <Download className="mr-2 h-4 w-4" /> Download Indisponível
+                  <Download className="mr-2 h-3 w-3" /> Download Indisponível
                 </Button>
               )}
             </CardFooter>
