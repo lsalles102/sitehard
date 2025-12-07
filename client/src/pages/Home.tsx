@@ -8,7 +8,7 @@ import { ArrowRight, Download, BookOpen } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Home() {
-  const { getItemsByType, items } = useContent();
+  const { getItemsByType, items, settings } = useContent();
   const newsItems = getItemsByType("news");
   
   // Get latest 3 items that are NOT news for the "Recent Additions" section
@@ -84,8 +84,18 @@ export default function Home() {
               Entre no nosso Discord e fique por dentro das últimas novidades, sorteios e suporte em tempo real.
             </p>
           </div>
-          <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-6 text-lg shadow-[0_0_20px_rgba(79,70,229,0.4)] transition-all hover:scale-105">
-            Entrar no Discord
+          <Button 
+            asChild
+            size="lg" 
+            className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-6 text-lg shadow-[0_0_20px_rgba(79,70,229,0.4)] transition-all hover:scale-105"
+          >
+            <a 
+              href={settings.discordUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Entrar no Discord
+            </a>
           </Button>
         </div>
       </section>
