@@ -33,20 +33,19 @@ export default function Downloads() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-max">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-5">
         {filteredDownloads.map((item) => (
           <Card key={item.id} className="bg-card/50 border-primary/20 hover:border-primary/60 transition-all group overflow-hidden flex flex-col">
-            <div className="relative overflow-hidden bg-black/30 flex items-center justify-center p-4">
+            <div className="relative w-full aspect-[1.9/1] overflow-hidden rounded-md bg-black/30">
               <img 
                 src={item.imageUrl} 
                 alt={item.title}
-                className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-110"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute bottom-2 left-2 z-20">
-                <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20 backdrop-blur">
-                  V 1.0
-                </span>
-              </div>
+              <span className="absolute bottom-2 left-2 text-[10px] font-mono text-primary bg-black/60 px-2 py-0.5 rounded border border-primary/20 backdrop-blur">
+                V 1.0
+              </span>
+            </div>
             </div>
             <CardHeader className="pb-2 pt-3 px-4 flex-grow">
               <CardTitle className="font-display text-lg leading-tight">{item.title}</CardTitle>
