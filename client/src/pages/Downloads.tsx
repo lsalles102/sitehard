@@ -54,9 +54,28 @@ export default function Downloads() {
               <CardDescription className="line-clamp-2">{item.description}</CardDescription>
             </CardHeader>
             <CardFooter className="mt-auto pt-4">
-              <Button className="w-full bg-primary/10 hover:bg-primary hover:text-black text-primary border border-primary/50 transition-all shadow-[0_0_15px_rgba(0,255,157,0.1)] hover:shadow-[0_0_25px_rgba(0,255,157,0.4)]">
-                <Download className="mr-2 h-4 w-4" /> Download Seguro
-              </Button>
+              {item.downloadUrl ? (
+                <Button 
+                  asChild
+                  className="w-full bg-primary/10 hover:bg-primary hover:text-black text-primary border border-primary/50 transition-all shadow-[0_0_15px_rgba(0,255,157,0.1)] hover:shadow-[0_0_25px_rgba(0,255,157,0.4)]"
+                >
+                  <a 
+                    href={item.downloadUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    download
+                  >
+                    <Download className="mr-2 h-4 w-4" /> Download Seguro
+                  </a>
+                </Button>
+              ) : (
+                <Button 
+                  disabled
+                  className="w-full bg-primary/10 hover:bg-primary hover:text-black text-primary border border-primary/50 transition-all shadow-[0_0_15px_rgba(0,255,157,0.1)] hover:shadow-[0_0_25px_rgba(0,255,157,0.4)] opacity-50 cursor-not-allowed"
+                >
+                  <Download className="mr-2 h-4 w-4" /> Download Indisponível
+                </Button>
+              )}
             </CardFooter>
           </Card>
         ))}
