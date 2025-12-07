@@ -36,7 +36,6 @@ export default function Downloads() {
       <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-5">
         {filteredDownloads.map((item) => (
           <Card key={item.id} className="bg-card/50 border-primary/20 hover:border-primary/60 transition-all group overflow-hidden flex flex-col">
-            
             <div className="relative w-full aspect-[1.9/1] overflow-hidden rounded-md bg-black/30">
               <img 
                 src={item.imageUrl} 
@@ -47,12 +46,11 @@ export default function Downloads() {
                 V 1.0
               </span>
             </div>
-
+            </div>
             <CardHeader className="pb-2 pt-3 px-4 flex-grow">
               <CardTitle className="font-display text-lg leading-tight">{item.title}</CardTitle>
               <CardDescription className="line-clamp-2 text-xs mt-1">{item.description}</CardDescription>
             </CardHeader>
-
             <CardFooter className="mt-auto pt-2 px-4 pb-3">
               {item.downloadUrl ? (
                 <Button 
@@ -74,7 +72,6 @@ export default function Downloads() {
                 </Button>
               )}
             </CardFooter>
-
           </Card>
         ))}
       </div>
