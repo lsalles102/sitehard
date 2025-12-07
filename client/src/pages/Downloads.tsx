@@ -33,15 +33,14 @@ export default function Downloads() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-max">
         {filteredDownloads.map((item) => (
           <Card key={item.id} className="bg-card/50 border-primary/20 hover:border-primary/60 transition-all group overflow-hidden flex flex-col">
-            <div className="relative h-20 overflow-hidden bg-black/30 flex items-center justify-center">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
+            <div className="relative overflow-hidden bg-black/30 flex items-center justify-center p-4">
               <img 
                 src={item.imageUrl} 
                 alt={item.title}
-                className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute bottom-2 left-2 z-20">
                 <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20 backdrop-blur">
@@ -49,7 +48,7 @@ export default function Downloads() {
                 </span>
               </div>
             </div>
-            <CardHeader className="pb-2 pt-3 px-4">
+            <CardHeader className="pb-2 pt-3 px-4 flex-grow">
               <CardTitle className="font-display text-lg leading-tight">{item.title}</CardTitle>
               <CardDescription className="line-clamp-2 text-xs mt-1">{item.description}</CardDescription>
             </CardHeader>
@@ -60,12 +59,7 @@ export default function Downloads() {
                   size="sm"
                   className="w-full bg-primary/10 hover:bg-primary hover:text-black text-primary border border-primary/50 transition-all shadow-[0_0_15px_rgba(0,255,157,0.1)] hover:shadow-[0_0_25px_rgba(0,255,157,0.4)] text-xs"
                 >
-                  <a 
-                    href={item.downloadUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    download
-                  >
+                  <a href={item.downloadUrl} target="_blank" rel="noopener noreferrer" download>
                     <Download className="mr-2 h-3 w-3" /> Download Seguro
                   </a>
                 </Button>
@@ -73,7 +67,7 @@ export default function Downloads() {
                 <Button 
                   disabled
                   size="sm"
-                  className="w-full bg-primary/10 hover:bg-primary hover:text-black text-primary border border-primary/50 transition-all shadow-[0_0_15px_rgba(0,255,157,0.1)] hover:shadow-[0_0_25px_rgba(0,255,157,0.4)] opacity-50 cursor-not-allowed text-xs"
+                  className="w-full bg-primary/10 text-primary border border-primary/50 opacity-50 cursor-not-allowed text-xs"
                 >
                   <Download className="mr-2 h-3 w-3" /> Download Indisponível
                 </Button>
